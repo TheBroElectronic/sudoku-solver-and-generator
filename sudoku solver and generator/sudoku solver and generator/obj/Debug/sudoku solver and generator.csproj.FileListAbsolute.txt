@@ -1,0 +1,9 @@
+D:\visual studi\sudoku solver and generator\sudoku solver and generator\bin\Debug\sudoku solver and generator.exe.config
+D:\visual studi\sudoku solver and generator\sudoku solver and generator\bin\Debug\sudoku solver and generator.exe
+D:\visual studi\sudoku solver and generator\sudoku solver and generator\bin\Debug\sudoku solver and generator.pdb
+D:\visual studi\sudoku solver and generator\sudoku solver and generator\obj\Debug\sudoku solver and generator.csprojResolveAssemblyReference.cache
+D:\visual studi\sudoku solver and generator\sudoku solver and generator\obj\Debug\sudoku_solver_and_generator.Form1.resources
+D:\visual studi\sudoku solver and generator\sudoku solver and generator\obj\Debug\sudoku_solver_and_generator.Properties.Resources.resources
+D:\visual studi\sudoku solver and generator\sudoku solver and generator\obj\Debug\sudoku solver and generator.csproj.GenerateResource.Cache
+D:\visual studi\sudoku solver and generator\sudoku solver and generator\obj\Debug\sudoku solver and generator.exe
+D:\visual studi\sudoku solver and generator\sudoku solver and generator\obj\Debug\sudoku solver and generator.pdb
