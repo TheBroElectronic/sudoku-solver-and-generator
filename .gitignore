@@ -1,0 +1,5 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/sudoku solver and generator/.vs/sudoku solver and generator/v15/Server/sqlite3/db.lock
