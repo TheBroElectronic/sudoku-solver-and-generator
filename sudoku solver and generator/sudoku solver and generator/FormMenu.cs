@@ -17,11 +17,6 @@ namespace sudoku_solver_and_generator
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            ShowMatrix(false, true, false);
-        }
-
         int[,] sudoin = new int[,]{
                 {0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0},
@@ -35,44 +30,6 @@ namespace sudoku_solver_and_generator
         int[,] matrAux = new int[9, 9];
         SolverBackTracking bk = new SolverBackTracking();
         
-        private void genBtn_Click(object sender, EventArgs e)
-        {
-            solveBtn.Enabled = true;
-            bk.GenSudoku(sudoin);
-            ShowMatrix(true,true,true);
-            solveBtn.Enabled = true;
-            matrAux = clone(sudoin);
-        }//call the generator
-
-        private void checkBtn_Click(object sender, EventArgs e)
-        {
-            bool check = true;
-            for (int y = 0; y < 9; y++)
-            {
-                for (int x = 0; x < 9; x++)
-                {
-                    if (bk.Validate(sudoin, y, x, sudoin[y, x]) || sudoin[y, x]==0)
-                    {
-                        check = false;
-                        break;
-                    }
-                }
-                if (check == false) break;
-            }
-            if (check) MessageBox.Show("Correct!");
-            else MessageBox.Show("Fail!");
-        }//check solution
-
-        private void solveBtn_Click(object sender, EventArgs e)
-        {
-            sudoin = matrAux;
-            if (bk.BackTrackSolve1(sudoin)) ShowMatrix(false,false,false);
-            else MessageBox.Show("imposible to solve");
-        }//call the solver
-
-        /// /////////////// ///
-        //TOOLS AND FUNCTIONS//
-        /// /////////////// ///
         //clone matrix
         int[,] clone(int[,] map)
         {
@@ -89,16 +46,13 @@ namespace sudoku_solver_and_generator
             {
                 for (int x = 0; x < 9; x++)
                 {
-                    if ((y > 2 && 6 > y) && (x<3 || x>5) || (x > 2 && 6 > x) && (y < 3 || y > 5))
-                        SwitchButton(y, x, false, true, ntPlay, env, true);
-                    else SwitchButton(y, x, false, true, ntPlay, env, false);
-                    if(b && sudoin[y, x] != 0)
-                        SwitchButton(y, x, true);
+                    SwitchButton(y, x, false, true, ntPlay, env);
+                    if(b) SwitchButton(y, x, b,true);
                 }
             }
         }
         //Buttons control
-        void SwitchButton(int y, int x, bool paint, bool prnt = false, bool ntPlay = false, bool env = true, bool green = false)
+        void SwitchButton(int y, int x, bool paint, bool prnt = false, bool ntPlay = false, bool env = true)
         {
             System.Windows.Forms.Button[,] xd = {
                 { button1, button2, button3, button4, button5, button6, button7, button8, button9 },
@@ -110,8 +64,8 @@ namespace sudoku_solver_and_generator
                 { button55,button56,button57,button58,button59,button60,button61,button62,button63},
                 { button64,button65,button66,button67,button68,button69,button70,button71,button72},
                 { button73,button74,button75,button76,button77,button78,button79,button80,button81}};
-
-            if (paint)
+            //pintar numeros con color celeste
+            if (paint && sudoin[y, x] != 0)
             {
                 xd[y, x].BackColor = Color.Aqua;
                 xd[y, x].Text = sudoin[y, x].ToString();
@@ -119,10 +73,11 @@ namespace sudoku_solver_and_generator
             }
             else
             {
-                if (ntPlay)
+                if (ntPlay || xd[y, x].BackColor == Color.Red)
                 {
-                    if (!green) xd[y, x].BackColor = Color.White;
-                    else xd[y, x].BackColor = Color.Lime;
+                    if ((y > 2 && 6 > y) && (x < 3 || x > 5) || (x > 2 && 6 > x) && (y < 3 || y > 5))
+                        xd[y, x].BackColor = Color.Lime;
+                    else  xd[y, x].BackColor = Color.White;
                     xd[y, x].Enabled = true;
                 }
                 if (!env) xd[y, x].Enabled = false;
@@ -131,9 +86,65 @@ namespace sudoku_solver_and_generator
                 xd[y, x].Text = sudoin[y, x].ToString();
             }
         }
+
+
+
+        //buttons// 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            ShowMatrix(false, true, false);
+        }
+
+        private void genBtn_Click(object sender, EventArgs e)
+        {
+            solveBtn.Enabled = true;
+            bk.GenSudoku(sudoin);
+            ShowMatrix(true, true, true);
+            solveBtn.Enabled = true;
+            matrAux = clone(sudoin);
+        }//call the generator
+
+        private void checkBtn_Click(object sender, EventArgs e)
+        {
+            bool check = true, completed = true;
+            for (int y = 0; y < 9; y++)
+            {
+                for (int x = 0; x < 9; x++)
+                {
+                    System.Windows.Forms.Button[,] xd = {
+                { button1, button2, button3, button4, button5, button6, button7, button8, button9 },
+                { button10,button11,button12,button13,button14,button15,button16,button17,button18},
+                { button19,button20,button21,button22,button23,button24,button25,button26,button27},
+                { button28,button29,button30,button31,button32,button33,button34,button35,button36},
+                { button37,button38,button39,button40,button41,button42,button43,button44,button45},
+                { button46,button47,button48,button49,button50,button51,button52,button53,button54},
+                { button55,button56,button57,button58,button59,button60,button61,button62,button63},
+                { button64,button65,button66,button67,button68,button69,button70,button71,button72},
+                { button73,button74,button75,button76,button77,button78,button79,button80,button81}};
+                    //si se encuentra un numero repetido, lo marca en rojo
+                    if (!bk.Validate(sudoin, y, x, sudoin[y, x]) && xd[y, x].BackColor != Color.Aqua && sudoin[y, x] != 0)
+                    {
+                        xd[y, x].BackColor = Color.Red;
+                        check = false;
+                        break;
+                    }
+                    else if(sudoin[y, x] == 0) completed = false;
+                }
+                if (check == false) break;
+            }
+            if (check && completed) MessageBox.Show("Completed!");
+            else if(!completed && check) MessageBox.Show("its ok!");
+        }//check solution
+
+        private void solveBtn_Click(object sender, EventArgs e)
+        {
+            sudoin = matrAux;
+            if (bk.BackTrackSolve1(sudoin)) ShowMatrix(false, false, false);
+            else MessageBox.Show("imposible to solve");
+        }//call the solver
         
-        
-        /// ////////////////////////////////////////////////////////////////////// ///    
+
+
         //buttons matrix (omg)
         private void button1_Click(object sender, EventArgs e)
         {

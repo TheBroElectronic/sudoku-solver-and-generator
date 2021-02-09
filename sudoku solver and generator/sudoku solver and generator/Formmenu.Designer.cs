@@ -33,6 +33,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.genBtn = new System.Windows.Forms.ToolStripButton();
             this.solveBtn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.button55 = new System.Windows.Forms.Button();
             this.button56 = new System.Windows.Forms.Button();
             this.button57 = new System.Windows.Forms.Button();
@@ -124,8 +125,8 @@
             checkBtn.Image = ((System.Drawing.Image)(resources.GetObject("checkBtn.Image")));
             checkBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             checkBtn.Name = "checkBtn";
-            checkBtn.Size = new System.Drawing.Size(42, 22);
-            checkBtn.Text = "check";
+            checkBtn.Size = new System.Drawing.Size(44, 22);
+            checkBtn.Text = "Check";
             checkBtn.Click += new System.EventHandler(this.checkBtn_Click);
             // 
             // toolStrip1
@@ -134,7 +135,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.genBtn,
             this.solveBtn,
-            checkBtn});
+            checkBtn,
+            this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(319, 25);
@@ -161,6 +163,11 @@
             this.solveBtn.Size = new System.Drawing.Size(38, 22);
             this.solveBtn.Text = "solve";
             this.solveBtn.Click += new System.EventHandler(this.solveBtn_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // button55
             // 
@@ -1193,7 +1200,7 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton solveBtn;
         private System.Windows.Forms.ToolStripButton genBtn;
-        private System.Windows.Forms.Button M07;
+        //private System.Windows.Forms.Button M07;
         private System.Windows.Forms.Button button55;
         private System.Windows.Forms.Button button56;
         private System.Windows.Forms.Button button57;
@@ -1275,6 +1282,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 

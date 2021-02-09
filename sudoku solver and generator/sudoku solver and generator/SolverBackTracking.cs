@@ -28,7 +28,7 @@ namespace sudoku_solver_and_generator
             {
                 for (int d = boxColStart; d < boxColStart + sqrt; d++)
                 {
-                    if (map[r, d] == num)
+                    if (map[r, d] == num && r != ypos && d != xpos)
                     {
                         return false;
                     }
